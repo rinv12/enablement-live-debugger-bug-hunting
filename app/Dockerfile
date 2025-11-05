@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk as build
+FROM eclipse-temurin:8-jdk as build
 
 RUN mkdir -p /app
 WORKDIR /app
@@ -8,15 +8,15 @@ RUN ./gradlew -i bootJar
 
 # ---------------------------------------------------------- #
 
-FROM openjdk:8-jdk as release
+FROM eclipse-temurin:8-jdk as release
 
 # Update <environmentURL> below.
 # environmentURL=mss33078.dev.dynatracelabs.com
 # TECHNOLOGY=java
 #COPY --from=<environmentURL>/linux/oneagent-codemodules:java / /
 #ENV LD_PRELOAD /opt/dynatrace/oneagent/agent/lib64/liboneagentproc.so
-#ENV DT_LIVEDEBUGGER_LABELS=app:josh
-#ENV DT_LIVEDEBUGGER_REMOTE_ORIGIN=ssh://git@bitbucket.lab.dynatrace.org/dobs/tutorial-java-workshop.git
+
+#ENV DT_LIVEDEBUGGER_REMOTE_ORIGIN=https://github.com/dynatrace-ace/enablement-live-debugger-bug-hunting.git
 #ENV DT_LIVEDEBUGGER_COMMIT=main
 
 RUN mkdir -p /app
